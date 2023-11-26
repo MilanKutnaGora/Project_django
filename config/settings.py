@@ -117,7 +117,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
+# Отвечает за формирование адреса доступа к статике
 STATIC_URL = 'static/'
+# Отвечает за место на диске, откуда необходимо подгружать статику
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

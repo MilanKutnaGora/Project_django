@@ -21,7 +21,6 @@ from catalog.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('', index_contacts),
+    path("", include('catalog.urls')),
 
 ]
