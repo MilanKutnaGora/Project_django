@@ -1,0 +1,42 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Лодки",
+      "description": "Лодки ПВХ"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Удилища",
+      "description": "Спининги, фидерные, карповые "
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Катушки",
+      "description": "Безынерционные, карповые, мультипликаторные"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Приманки",
+      "description": "Воблеры, блесны, кастмастеры"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Снаряжение",
+      "description": "Кресла, стулья, столы"
+    }
+  }
+]
