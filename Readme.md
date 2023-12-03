@@ -71,6 +71,7 @@ def handle(self, *args, **options): тут прописываем исходны
 Создаем пустой список для заполнения <model_name>_for_create = [] и прописываем цикл for <model_name>_item in <model_name>_list:
 В цикле пишем <model_name>_for_create.append(<Model_name>(**<model_name>_item))
 Вне цикла пишем <Model_name>.objects.bulk_create(<model_name>_for_create)
+
 ---20.2---
 
 Статика
