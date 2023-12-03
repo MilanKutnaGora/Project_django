@@ -14,10 +14,6 @@
 Находим точку входа в settings для связывания урлов - ROOT_URLCONF = 'config.urls'
 Связываем через include - добавляем в config/urls еще один паттерн path('', include('catalog.urls'))
 
-***Настройка ввода (POST)
-
-Прописываем в index.html защиту ВАЖНО! {% csrf_token %}, и формы ввода
-В контроллере прописываем логику if request.method == "POST": name = request.POST.get('name') и тд.
 
 ---Задание 20.1---
 
