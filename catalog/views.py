@@ -4,7 +4,7 @@ from catalog.models import Product
 
 
 def index(request):
-    return render(request, 'catalog/home.html')
+    return render(request, 'catalog/home.html', )
 
 def index_contacts(request):
     if request.method == 'POST':
@@ -17,6 +17,13 @@ def index_contacts(request):
 def index_shop(request):
     product_list = Product.objects.all()
     context = {
-        'object_list': product_list
-    }
+        'object_list': product_list,
+        }
     return render(request, 'catalog/shop.html', context)
+
+def index_product(request, pk):
+    context = {
+        'object': Product.objects.get(pk=pk)
+
+        }
+    return render(request, 'catalog/product.html', context)
