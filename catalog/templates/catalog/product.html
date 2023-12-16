@@ -1,5 +1,6 @@
+{% load static %}
 {% extends 'catalog/base.html' %}
-
+{% load my_tags %}
 {% block content_1 %}
     <div class="col-3">
         <div class="card mb-4 box-shadow">
@@ -8,6 +9,7 @@
             </div>
             <div class="card-header">
                 <img src="{% mymedia object.image %}" class="card-img-top object-fit-none" style="height:100px;"/>
+<!--                <img src="{% static 'media/Нет фото.png' %}" alt="Logo">-->
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ object.price }}</h1>
