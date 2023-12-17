@@ -22,8 +22,10 @@ def index_shop(request):
     return render(request, 'catalog/shop.html', context)
 
 def index_product(request, pk):
+    category_item = Product.objects.get(pk=pk)
     context = {
-        'object': Product.objects.get(pk=pk)
-
+        'object_list': Product.objects.filter(category_id=pk),
+        'title': f'{category_item.name}'
         }
+
     return render(request, 'catalog/product.html', context)
