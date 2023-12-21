@@ -24,6 +24,8 @@ from catalog.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('catalog.urls', namespace='catalog')),
+    path("records/", include('records.urls', namespace='records')),
+
     ]
 
 if settings.DEBUG:
