@@ -8,7 +8,7 @@ class Record(models.Model):
     description = models.TextField(null=False, verbose_name="содержимое")
     image = models.ImageField(upload_to='media/',  verbose_name='изображение')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="дата создания")
-    publication = models.BooleanField(verbose_name="признак публикации")
+    publication = models.BooleanField(default=True, verbose_name="признак публикации")
     views_count = models.IntegerField(default=0, verbose_name="колличество просмотров")
 
     def __str__(self):
