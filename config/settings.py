@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'catalog.templatetags.my_tags',
 
     'catalog',
-    'records',
+    'record'
 ]
 
 MIDDLEWARE = [

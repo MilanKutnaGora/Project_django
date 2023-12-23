@@ -1,3 +1,5 @@
+
+
 from django.db import models
 
 class Record(models.Model):
@@ -10,12 +12,8 @@ class Record(models.Model):
     views_count = models.IntegerField(default=0, verbose_name="колличество просмотров")
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.description}'
 
     class Meta:
         verbose_name = 'блоговая запись'
         verbose_name_plural = 'блоговые записи'
-
-
-
-
