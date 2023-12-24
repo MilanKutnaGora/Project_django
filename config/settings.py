@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.templatetags.my_tags',
 
-    'catalog'
+    'catalog',
+    'record'
 ]
 
 MIDDLEWARE = [
