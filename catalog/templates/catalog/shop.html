@@ -1,26 +1,30 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content_1 %}
-{% for object in object_list %}
-    <div class="col-3">
-        <div class="card mb-4 box-shadow">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">{{ object }}</h4>
-            </div>
-            <div class="card-header">
-                <img src="{% mymedia object.image %}" class="card-img-top object-fit-none" style="height:100px;"/>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">{{ object.price }}</h1>
-                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    <li>- {{ object.description }}</li>
-                    <li>- Категория {{ object.category }}</li>
-                    <li>- цена {{ object.price }} руб.</li>
-                    <li>- Гарантия 12 месяцев </li>
-                </ul>
-                <a href="product/{{ object.id }}" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
+    <div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить товар</a>
+    </div>
+    {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object }}</h4>
+                </div>
+                <div class="card-header">
+                    <img src="{% mymedia object.image %}" class="card-img-top object-fit-none" style="height:100px;"/>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{ object.price }}</h1>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>- {{ object.description }}</li>
+                        <li>- Категория {{ object.category }}</li>
+                        <li>- цена {{ object.price }} руб.</li>
+                        <li>- Гарантия 12 месяцев </li>
+                    </ul>
+                    <a href="product/{{ object.id }}" class="btn btn-lg btn-block btn-outline-primary">Просмотр</a>
+                    <a href="{% url 'catalog:update_product' object.pk %}" class="btn btn-lg btn-block btn-outline-primary">Редактировать</a>
+                </div>
             </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
 {% endblock %}
