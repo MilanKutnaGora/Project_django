@@ -2,8 +2,16 @@ from django import forms
 
 from catalog.models import Product
 
+class StyleFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name == 'is_active' or field_name == 'is_published':
+                field.widget.attrs['class'] = 'form'
+            else:
+                field.widget.attrs['class'] = 'form-control'
 
-class ProductForm(forms.ModelForm):
+class ProductForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Product
@@ -30,3 +38,8 @@ class ProductForm(forms.ModelForm):
                 raise forms.ValidationError('Недопустимые слова')
 
             return cleaned_data
+
+class VersionForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = ('product',)
