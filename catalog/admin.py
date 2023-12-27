@@ -25,3 +25,4 @@ class VersionAdmin(admin.ModelAdmin):
     list_filter = ('product',)
     search_fields = ('product', 'version_name',)
 
+
