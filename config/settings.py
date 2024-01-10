@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'catalog.templatetags.my_tags',
 
     'catalog',
-    'record'
+    'record',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
+LOGOUT_REDIRECT_URL = '/',
+LOGIN_REDIRECT_URL = '/'
