@@ -45,10 +45,3 @@ class VersionForm(StyleFormMixin, forms.ModelForm):
         model = Product
         exclude = ('product',)
 
-# class VersionBaseInLineFormSet(BaseInlineFormSet):
-#     def clean(self):
-#         super().clean()
-#         active_list = [form.cleaned_data['is_active'] for form in self.forms if
-#                        'is_active' in form.cleaned_data]
-#         if active_list.count(True) > 1:
-#             raise forms.ValidationError('ОШИБКА! Только одна версия может быть активна')

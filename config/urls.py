@@ -23,9 +23,9 @@ from catalog.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('catalog.urls', namespace='catalog')),
-    path("record/", include('record.urls', namespace='record')),
-    path("users/", include('users.urls', namespace='users')),
+    path('', include('catalog.urls', namespace='catalog')),
+    path('record/', include('record.urls', namespace='record')),
+    path('users/', include('users.urls', namespace='users')),
 
     ]
 
