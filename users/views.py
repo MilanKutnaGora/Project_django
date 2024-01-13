@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.core.mail import send_mail
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import CreateView, UpdateView
 
 from users.forms import UserRegisterForm, UserProfileForm
@@ -36,23 +37,23 @@ class RegisterView(CreateView):
         return super().form_valid(form)
 
 
-# class EmailConfirmView(View):
-#     model = User
-#     template_name = 'users/email_confirm_form.html'
-#
-#     def get(self, request):
-#         return render(request, self.template_name)
-#
-#     def post(self, request):
-#         code = request.POST.get('ver_code')
-#         user = User.objects.filter(verification_code=code).first()
-#
-#         if user is not None and user.verification_code == code:
-#             user.is_active = True
-#             user.save()
-#             return redirect('users:login')
-#         else:
-#             return redirect('users:email_confirm_form')
+class EmailConfirmView(View):
+    model = User
+    template_name = 'users/email_confirm_form.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        code = request.POST.get('ver_code')
+        user = User.objects.filter(verification_code=code).first()
+
+        if user is not None and user.verification_code == code:
+            user.is_active = True
+            user.save()
+            return redirect('users:login')
+        else:
+            return redirect('users:email_confirm_form')
 #
 #
 class ProfileView(UpdateView):
