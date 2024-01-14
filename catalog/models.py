@@ -27,8 +27,8 @@ class Product(models.Model):
     date_base = models.DateField(null=True, blank=True, verbose_name='дата создания')
     data_change = models.DateField(null=True, blank=True, verbose_name='дата изменения')
 
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь', on_delete=models.SET_NULL,
-    #                           **NULLABLE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь', on_delete=models.SET_NULL,
+                              **NULLABLE)
 
     def __str__(self):
         return f"{self.name}"
