@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 
+NULLABLE = {'blank': True, 'null': True}
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='наименование')
@@ -24,6 +26,9 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='цена за покупку')
     date_base = models.DateField(null=True, blank=True, verbose_name='дата создания')
     data_change = models.DateField(null=True, blank=True, verbose_name='дата изменения')
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь', on_delete=models.SET_NULL,
+                              **NULLABLE)
 
     def __str__(self):
         return f"{self.name}"

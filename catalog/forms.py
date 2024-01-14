@@ -16,7 +16,7 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'category', 'image', 'price',)
+        exclude = ('owner',)
 
     def clean_name(self):
         cleaned_data = self.cleaned_data['name']
@@ -45,10 +45,3 @@ class VersionForm(StyleFormMixin, forms.ModelForm):
         model = Product
         exclude = ('product',)
 
-# class VersionBaseInLineFormSet(BaseInlineFormSet):
-#     def clean(self):
-#         super().clean()
-#         active_list = [form.cleaned_data['is_active'] for form in self.forms if
-#                        'is_active' in form.cleaned_data]
-#         if active_list.count(True) > 1:
-#             raise forms.ValidationError('ОШИБКА! Только одна версия может быть активна')

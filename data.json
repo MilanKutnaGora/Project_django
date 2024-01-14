@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Лодки",
-      "description": "Лодки ПВХ"
+      "description": "ПВХ"
     }
   },
   {
@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
       "name": "Удилища",
-      "description": "Спининги, фидерные, карповые "
+      "description": "Спининги, фидерные, карповые"
     }
   },
   {
@@ -37,6 +37,290 @@
     "fields": {
       "name": "Снаряжение",
       "description": "Кресла, стулья, столы"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Лодка Хантер 320",
+      "description": "Лодка ПВХ длина 3.2 м",
+      "image": "media/Хантер.png",
+      "category": 1,
+      "price": 27000,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Лодка Стелс 330",
+      "description": "Лодка ПВХ длина 3.3 м",
+      "image": "media/Стелс.png",
+      "category": 1,
+      "price": 29000,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Лодка Сузумар 390",
+      "description": "Лодка ПВХ длина 3.9 м",
+      "image": "media/Сузумар.webp",
+      "category": 1,
+      "price": 49000,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Спининг Кайда 2.7",
+      "description": "Спининг длина 2.7 м",
+      "image": "media/Спиннинг_Кайда.jpg",
+      "category": 2,
+      "price": 2400,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Фидер Крокодил 2.7",
+      "description": "Фидер длина 2.7 м",
+      "image": "media/Фидер_крокодил.png",
+      "category": 2,
+      "price": 2800,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Карповое удилище Осетр 2.7",
+      "description": "Карповое удилище длина 2.7 м",
+      "image": "media/Осетр.png",
+      "category": 2,
+      "price": 3600,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Катушка Дайва",
+      "description": "Катушка безынерционная",
+      "image": "media/Катушка_Дайва.jpg",
+      "category": 3,
+      "price": 5200,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "name": "Катушка Салмо",
+      "description": "Катушка карповая",
+      "image": "media/Кутушка_Салмо.jpg",
+      "category": 3,
+      "price": 5800,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "name": "Катушка Косадака",
+      "description": "Катушка мультипликаторная",
+      "image": "media/Катушка_Касодака.jpg",
+      "category": 3,
+      "price": 9300,
+      "date_base": "2020-01-01",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "name": "Воблер Рейд",
+      "description": "Воблер 38 мм, 7г",
+      "image": "media/Воблер_рейд.png",
+      "category": 4,
+      "price": 1400,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "name": "Блесна Косадака",
+      "description": "Блесна-цикада 21г",
+      "image": "media/Бесна_Косадака.jpg",
+      "category": 4,
+      "price": 300,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+      "name": "Кастмастер Косадака",
+      "description": "Блесна кастмастер 21г",
+      "image": "media/Костмастер_Косадака.jpeg",
+      "category": 4,
+      "price": 200,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 13,
+    "fields": {
+      "name": "Кресло карповое",
+      "description": "Складное, алюминевое",
+      "image": "media/Кресло_карповое.jpg",
+      "category": 5,
+      "price": 17000,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 14,
+    "fields": {
+      "name": "Стул",
+      "description": "Стул-рюкзак",
+      "image": "media/Сул_складной.jpg",
+      "category": 5,
+      "price": 1700,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 15,
+    "fields": {
+      "name": "Столик карповый",
+      "description": "Складной, алюминевый",
+      "image": "media/Стол.jpg",
+      "category": 5,
+      "price": 10000,
+      "date_base": "2023-12-17",
+      "data_change": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 16,
+    "fields": {
+      "name": "Катушка allex",
+      "description": "Катушка карповая",
+      "image": "media/Катушка_Дайва_LRza4un.jpg",
+      "category": 3,
+      "price": 4000,
+      "date_base": null,
+      "data_change": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 17,
+    "fields": {
+      "name": "Фидер бамбук",
+      "description": "Очень прочный",
+      "image": "media/Осетр_GK18sbL.png",
+      "category": 2,
+      "price": 3000,
+      "date_base": null,
+      "data_change": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 18,
+    "fields": {
+      "name": "Лодка Шторм",
+      "description": "Лодка ПВХ",
+      "image": "media/Сузумар_CSc3D5L.webp",
+      "category": 1,
+      "price": 20000,
+      "date_base": null,
+      "data_change": null
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 2,
+      "version_number": 1,
+      "version_name": "Начальная",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 5,
+      "version_number": 2,
+      "version_name": "Простая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "version_number": 1,
+      "version_name": "рабочая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "product": 5,
+      "version_number": 1,
+      "version_name": "Рабочая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "product": 4,
+      "version_number": 1,
+      "version_name": "Начальная",
+      "is_active": true
     }
   }
 ]
