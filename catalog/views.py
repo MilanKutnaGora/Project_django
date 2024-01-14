@@ -1,3 +1,5 @@
+import json
+
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -44,7 +46,18 @@ class ProductCreateView(CreateView):
    form_class = ProductForm
    success_url = reverse_lazy('catalog:index_shop')
 
-
+   def form_valid(self, form):
+       if form.is_valid():
+           new_contact = form.save()
+           new_contact.personal_manager = self.request.user
+           new_contact.save()
+           contact_dict = {
+               "Имя": new_contact.contact_name,
+               "Почта": new_contact.contact_email
+           }
+           with open("contacts.json", 'a', encoding='UTF-8') as f:
+               json.dump(contact_dict, f, indent=2, ensure_ascii=False)
+       return super().form_valid(form)
 
 class ProductUpdateView(UpdateView):
     model = Product

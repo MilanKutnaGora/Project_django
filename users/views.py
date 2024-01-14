@@ -66,13 +66,13 @@ class ProfileView(UpdateView):
 #
 #
 def generate_new_password(request):
-    new_pass = ''.join([str(random.randint(0, 9)) for _ in range(12)])
+    new_password = ''.join([str(random.randint(0, 9)) for _ in range(12)])
     send_mail(
-        subject='Новый пароль',
-        message=f'Ваш новый пароль - {new_pass}',
+        subject='Вы сменили пароль',
+        message=f'Ваш новый пароль - {new_password}',
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[request.user.email]
     )
-    request.user.set_password(new_pass)
+    request.user.set_password(new_password)
     request.user.save()
     return redirect(reverse('users:login'))
