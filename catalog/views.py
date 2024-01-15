@@ -84,3 +84,5 @@ class ProductUpdateView(UpdateView):
             else:
                 return self.form_invalid(form)
         return super().form_valid(form)
+
+
