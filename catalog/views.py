@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -24,6 +25,11 @@ class ProductListView(ListView):
     model = Product
     template_name = 'catalog/shop.html'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
 
 
 class ProductDetailView(DetailView):
@@ -41,7 +47,7 @@ def index_product(request, pk):
 
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
    model = Product
    form_class = ProductForm
    success_url = reverse_lazy('catalog:index_shop')
@@ -59,7 +65,7 @@ class ProductCreateView(CreateView):
                json.dump(contact_dict, f, indent=2, ensure_ascii=False)
        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index_shop')
