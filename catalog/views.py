@@ -1,11 +1,12 @@
 import json
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
 
 
@@ -24,6 +25,14 @@ class ProductListView(ListView):
     model = Product
     template_name = 'catalog/shop.html'
 
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_published=True)
+
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(owner=self.request.user)
+
+        return queryset
+
 
 
 class ProductDetailView(DetailView):
@@ -41,7 +50,7 @@ def index_product(request, pk):
 
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
    model = Product
    form_class = ProductForm
    success_url = reverse_lazy('catalog:index_shop')
@@ -52,17 +61,18 @@ class ProductCreateView(CreateView):
            new_contact.personal_manager = self.request.user
            new_contact.save()
            contact_dict = {
-               "Имя": new_contact.contact_name,
-               "Почта": new_contact.contact_email
+               "Имя": new_contact.name,
+               "Почта": new_contact.email
            }
            with open("contacts.json", 'a', encoding='UTF-8') as f:
                json.dump(contact_dict, f, indent=2, ensure_ascii=False)
        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index_shop')
+    permission_required = 'catalog.change_product'
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -84,5 +94,25 @@ class ProductUpdateView(UpdateView):
             else:
                 return self.form_invalid(form)
         return super().form_valid(form)
+
+    def get_form_class(self):
+        if self.request.user.is_staff and self.request.user.groups.filter(
+                name='moderator').exists():
+            return ModeratorForm
+        return ProductForm
+
+    def test_func(self):
+        _user = self.request.user
+        _instance: Product = self.get_object()
+        custom_perms: tuple = (
+            'catalog_app.set_is_published',
+            'catalog_app.set_category',
+            'catalog_app.set_product_description',
+        )
+        if _user.is_superuser or _user == _instance.owner:
+            return True
+        elif _user.groups.filter(name='moderator') and _user.has_perms(custom_perms):
+            return True
+        return self.handle_no_permission()
 
 
