@@ -10,6 +10,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
+from catalog.services import get_cached_category_for_product
 
 
 def index(request):
@@ -44,17 +45,8 @@ class ProductDetailView(PermissionRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        if settings.CASHE_ENABLED:
-            key = f'subject_list_{self.object.pk}'
-            subject_list = cache.get(key)
-            if subject_list is None:
-                subject_list = self.object.subject_set.all()
-                cache.set(key, subject_list)
-            else:
-                subject_list = self.object.subject_set.all()
-
-            context_data['subject'] = subject_list
-            return context_data
+        context_data['category'] = get_cached_category_for_product()
+        return context_data
 
 
 def index_product(request, pk):
