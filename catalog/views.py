@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
 
 
@@ -26,8 +26,11 @@ class ProductListView(ListView):
     template_name = 'catalog/shop.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(is_published=True)
+        queryset = super().get_queryset().filter(is_published=True)
+
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(owner=self.request.user)
+
         return queryset
 
 
@@ -91,6 +94,12 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             else:
                 return self.form_invalid(form)
         return super().form_valid(form)
+
+    def get_form_class(self):
+        if self.request.user.is_staff and self.request.user.groups.filter(
+                name='moderator').exists():
+            return ModeratorForm
+        return ProductForm
 
     def test_func(self):
         _user = self.request.user

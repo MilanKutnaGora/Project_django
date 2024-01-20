@@ -45,8 +45,8 @@ class VersionForm(StyleFormMixin, forms.ModelForm):
         model = Product
         exclude = ('product',)
 
-# class ModeratorForm(StyleFormMixin, forms.ModelForm):
-#     class Meta:
-#         model = Product
-#         exclude = ('product_name', 'preview', 'price', 'create_date', 'final_change_date', 'owner')
+class ModeratorForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = ('product_name', 'preview', 'price', 'create_date', 'final_change_date', 'owner')
 
