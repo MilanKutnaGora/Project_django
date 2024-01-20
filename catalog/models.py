@@ -38,6 +38,13 @@ class Product(models.Model):
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
 
+        permissions = [
+            (
+                'set_published_status',
+                'can publish product'
+            )
+        ]
+
 
 class Version(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE,

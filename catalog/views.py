@@ -58,8 +58,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
            new_contact.personal_manager = self.request.user
            new_contact.save()
            contact_dict = {
-               "Имя": new_contact.contact_name,
-               "Почта": new_contact.contact_email
+               "Имя": new_contact.name,
+               "Почта": new_contact.email
            }
            with open("contacts.json", 'a', encoding='UTF-8') as f:
                json.dump(contact_dict, f, indent=2, ensure_ascii=False)
@@ -69,6 +69,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index_shop')
+    permission_required = 'catalog.change_product'
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -90,5 +91,19 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             else:
                 return self.form_invalid(form)
         return super().form_valid(form)
+
+    def test_func(self):
+        _user = self.request.user
+        _instance: Product = self.get_object()
+        custom_perms: tuple = (
+            'catalog_app.set_is_published',
+            'catalog_app.set_category',
+            'catalog_app.set_product_description',
+        )
+        if _user.is_superuser or _user == _instance.owner:
+            return True
+        elif _user.groups.filter(name='moderator') and _user.has_perms(custom_perms):
+            return True
+        return self.handle_no_permission()
 
 
