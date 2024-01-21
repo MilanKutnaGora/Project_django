@@ -1,6 +1,8 @@
 import json
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.cache import cache
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -8,6 +10,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
+from catalog.services import get_cached_category_for_product
 
 
 def index(request):
@@ -35,9 +38,16 @@ class ProductListView(ListView):
 
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(PermissionRequiredMixin, DetailView):
     model = Product
-    template_name = 'catalog/product.html'
+    permission_required = 'catalog.view_product'
+
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['category'] = get_cached_category_for_product()
+        return context_data
+
 
 def index_product(request, pk):
     category_item = Product.objects.get(pk=pk)
