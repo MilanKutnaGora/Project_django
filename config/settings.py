@@ -22,8 +22,7 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lk@jy^nj+)gbq4fj8&l+fab#=%z+^i-t$yzud5qark(ji&)zcb'
-
+SECRET_KEY = os.getenv('E_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
@@ -83,9 +82,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shop',
-        'USER': 'postgres',
-        'PASSWORD': 'milkut56466'
+        'NAME': os.getenv('DATA_BASE_NAME'),
+        'USER': os.getenv('DATA_BASE_USER'),
+        'PASSWORD': os.getenv('DATA_BASE_PASSWORD'),
     }
 }
 
@@ -151,8 +150,8 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
-EMAIL_HOST_USER = 'milank777@yandex.ru'
-EMAIL_HOST_PASSWORD = 'eoynxljycdjmlxes'
+EMAIL_HOST_USER = os.getenv('E_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('E_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
